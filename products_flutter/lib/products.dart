@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './pages/product.dart';
 
 class Products extends StatelessWidget {
   final List<Map<String, String>> products;
@@ -19,14 +18,11 @@ class Products extends StatelessWidget {
               FlatButton(
                 child: Text('Details'),
                 color: Theme.of(context).primaryColorLight,
-                onPressed: () => Navigator.push<bool>(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => ProductPage(
-                              products[index]['title'],
-                              products[index]['image'])),
-                    ).then((bool value){
-                      if(value){
+                onPressed: () => Navigator
+                        .pushNamed<bool>(
+                            context, '/product/' + index.toString())
+                        .then((bool value) {
+                      if (value) {
                         deleteProduct(index);
                       }
                     }),
